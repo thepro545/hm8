@@ -11,19 +11,17 @@ public class Main {
         int leapYear = checkLeapYear(year);
 
 // Task 2
-        // int currentYear = LocalDate.now().getYear();
-        String osName = "Android";
-        ;
-        int clientOS = getClientOS(osName);
-        if (clientOS == 0) {
-            osName = "iOS";
-        }
-        String clientYear = getClientYear();
-        System.out.println(clientYear + " для " + osName);
+        String clientOs = getClientOS();
+        System.out.println(clientOs);
 
+// Task 2.1
+        int clOs = 0;
+        int phYr = 2020;
+        String clientOs2 = getClientOS2(clOs, phYr);
+        System.out.println(clientOs2);
 // Task 3
-        int days = 0;
-        days = getDistance(days);
+        int deliveryDistance = 95;
+        int days = getDistance(deliveryDistance);
         System.out.println("Потребуется дней: " + days);
 
 // Task 4
@@ -31,7 +29,7 @@ public class Main {
         checkDouble(param);
 
 // Task 5
-        int [] mass1 = new int[]{3, 2, 1, 6, 5};
+        int[] mass1 = new int[]{3, 2, 1, 6, 5};
         reverseMass(mass1);
         System.out.print(Arrays.toString(mass1));
 
@@ -49,28 +47,41 @@ public class Main {
     }
 
 
-    // Task 2 Пока сложнова-то. 2 значения в 1 метод не могу поставить, мб попозже подправлю. Но код работает
-    public static int getClientOS(String name) {
-        if (name.equals("Android")) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    public static String getClientYear() {
-        int phoneYear = 2020;
+    // Task 2 Подправил. Сделал всё в 1 методе
+    public static String getClientOS() {
+        String osName = "Android";
         String yearVersion = "Вам нужно установить обычную версию";
+        int phoneYear = 2020;
         int currentYear = LocalDate.now().getYear();
+        if (osName.equals("iOS")) {
+            osName = "iOS";
+        }
         if (phoneYear < currentYear) {
             yearVersion = "Вам нужно установить lite-версию";
         }
-        return yearVersion;
+        String clientOs = yearVersion + " для " + osName;
+        return clientOs;
+    }
+    // Task 2.1 Сделал 2 числовых значения на вход
+    public static String getClientOS2(int clOs, int phYr) {
+        String osName = "Amdroid";
+        String yearVersion = "Вам нужно установить обычную версию";
+        int currentYear = LocalDate.now().getYear();
+        if (clOs == 0) {
+            osName = "iOS";
+        }
+        if (clOs == 1) {
+            osName = "Amdroid";
+        }
+        if (phYr < currentYear) {
+            yearVersion = "Вам нужно установить lite-версию";
+        }
+        String clientOs2 = yearVersion + " для " + osName;
+        return clientOs2;
     }
 
     // Task 3
-    public static int getDistance(int day) {
-        int deliveryDistance = 95;
+    public static int getDistance(int deliveryDistance) {
         int days = 0;
         if (deliveryDistance > 0 && deliveryDistance <= 20) {
             days = 1;
@@ -86,11 +97,11 @@ public class Main {
 
 
     // Task 4
-    public static void checkDouble(String par) {
+    public static void checkDouble(String param) {
         int check = 0;
-        for (int i = 0; i < par.length() - 1; i++) {
-            if (par.charAt(i) == par.charAt(i + 1)) {
-                System.out.println("Дубль - " + par.charAt(i));
+        for (int i = 0; i < param.length() - 1; i++) {
+            if (param.charAt(i) == param.charAt(i + 1)) {
+                System.out.println("Дубль - " + param.charAt(i));
                 check = 1;
                 break;
             }
@@ -100,14 +111,29 @@ public class Main {
         }
     }
 
-// Task 5
-    public static int[] reverseMass (int [] mass1){
+//    public static void checkDouble(String par) {
+//        boolean checking = false;
+//        for (int i = 0; i < par.length() - 1; i++) {
+//            checking = par.charAt(i) == par.charAt(i + 1);
+//            if (checking) {
+//                System.out.println("Дубль - " + par.charAt(i));
+//                break;
+//            }
+//        }
+//        if (!checking) {
+//            System.out.println("Дублей нет");
+//        }
+//    }
+
+    // Task 5
+    public static int[] reverseMass(int[] mass1) {
         int Temp;
         for (int i = 0; i <= (mass1.length) / 2; i++) {
             Temp = mass1[mass1.length - i - 1];
             mass1[mass1.length - i - 1] = mass1[i];
             mass1[i] = Temp;
-        } return mass1;
+        }
+        return mass1;
 
     }
 
