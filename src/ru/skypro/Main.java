@@ -11,14 +11,10 @@ public class Main {
         int leapYear = checkLeapYear(year);
 
 // Task 2
-        String clientOs = getClientOS();
+        int clentOs = 0;
+        int phoneYear = 2020;
+        String clientOs = getClientOS(clentOs, phoneYear);
         System.out.println(clientOs);
-
-// Task 2.1
-        int clOs = 0;
-        int phYr = 2020;
-        String clientOs2 = getClientOS2(clOs, phYr);
-        System.out.println(clientOs2);
 // Task 3
         int deliveryDistance = 95;
         int days = getDistance(deliveryDistance);
@@ -51,37 +47,22 @@ public class Main {
     }
 
 
-    // Task 2
-    public static String getClientOS() {
-        String osName = "Android";
+    // Task 2.1 Сделал 2 числовых значения на вход
+    public static String getClientOS(int clentOs, int phoneYear) {
+        String osName = "Amdroid";
         String yearVersion = "Вам нужно установить обычную версию";
-        int phoneYear = 2020;
         int currentYear = LocalDate.now().getYear();
-        if (osName.equals("iOS")) {
+        if (clentOs == 0) {
             osName = "iOS";
+        }
+        if (clentOs == 1) {
+            osName = "Amdroid";
         }
         if (phoneYear < currentYear) {
             yearVersion = "Вам нужно установить lite-версию";
         }
         String clientOs = yearVersion + " для " + osName;
         return clientOs;
-    }
-    // Task 2.1 Сделал 2 числовых значения на вход
-    public static String getClientOS2(int clOs, int phYr) {
-        String osName = "Amdroid";
-        String yearVersion = "Вам нужно установить обычную версию";
-        int currentYear = LocalDate.now().getYear();
-        if (clOs == 0) {
-            osName = "iOS";
-        }
-        if (clOs == 1) {
-            osName = "Amdroid";
-        }
-        if (phYr < currentYear) {
-            yearVersion = "Вам нужно установить lite-версию";
-        }
-        String clientOs2 = yearVersion + " для " + osName;
-        return clientOs2;
     }
 
     // Task 3
