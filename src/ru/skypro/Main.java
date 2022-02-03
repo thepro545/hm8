@@ -31,7 +31,11 @@ public class Main {
 // Task 5
         int[] mass1 = new int[]{3, 2, 1, 6, 5};
         reverseMass(mass1);
-        System.out.print(Arrays.toString(mass1));
+        System.out.println(Arrays.toString(mass1));
+
+// Task 6
+        int[] arr = generateRandomArray();
+        countAndAvg(arr);
 
     }
 
@@ -47,7 +51,7 @@ public class Main {
     }
 
 
-    // Task 2 Подправил. Сделал всё в 1 методе
+    // Task 2
     public static String getClientOS() {
         String osName = "Android";
         String yearVersion = "Вам нужно установить обычную версию";
@@ -111,20 +115,6 @@ public class Main {
         }
     }
 
-//    public static void checkDouble(String par) {
-//        boolean checking = false;
-//        for (int i = 0; i < par.length() - 1; i++) {
-//            checking = par.charAt(i) == par.charAt(i + 1);
-//            if (checking) {
-//                System.out.println("Дубль - " + par.charAt(i));
-//                break;
-//            }
-//        }
-//        if (!checking) {
-//            System.out.println("Дублей нет");
-//        }
-//    }
-
     // Task 5
     public static int[] reverseMass(int[] mass1) {
         int Temp;
@@ -134,7 +124,23 @@ public class Main {
             mass1[i] = Temp;
         }
         return mass1;
-
     }
-
+    //Task 6
+    public static int[] generateRandomArray() {
+        java.util.Random random = new java.util.Random();
+        int[] arr = new int[30];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100_000) + 100_000;
+        }
+        return arr;
+    }
+    public static void countAndAvg (int [] arr){
+        float sum = 0;
+        float avg;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        avg = sum / arr.length;
+        System.out.println("Сумма элементов = " + sum + " среднее значение = " + avg);
+    }
 }
