@@ -11,14 +11,10 @@ public class Main {
         int leapYear = checkLeapYear(year);
 
 // Task 2
-        String clientOs = getClientOS();
+        int clentOs = 0;
+        int phoneYear = 2020;
+        String clientOs = getClientOS(clentOs, phoneYear);
         System.out.println(clientOs);
-
-// Task 2.1
-        int clOs = 0;
-        int phYr = 2020;
-        String clientOs2 = getClientOS2(clOs, phYr);
-        System.out.println(clientOs2);
 // Task 3
         int deliveryDistance = 95;
         int days = getDistance(deliveryDistance);
@@ -31,7 +27,11 @@ public class Main {
 // Task 5
         int[] mass1 = new int[]{3, 2, 1, 6, 5};
         reverseMass(mass1);
-        System.out.print(Arrays.toString(mass1));
+        System.out.println(Arrays.toString(mass1));
+
+// Task 6
+        int[] arr = generateRandomArray();
+        countAndAvg(arr);
 
     }
 
@@ -47,37 +47,22 @@ public class Main {
     }
 
 
-    // Task 2 Подправил. Сделал всё в 1 методе
-    public static String getClientOS() {
-        String osName = "Android";
+    // Task 2.1 Сделал 2 числовых значения на вход
+    public static String getClientOS(int clentOs, int phoneYear) {
+        String osName = "Amdroid";
         String yearVersion = "Вам нужно установить обычную версию";
-        int phoneYear = 2020;
         int currentYear = LocalDate.now().getYear();
-        if (osName.equals("iOS")) {
+        if (clentOs == 0) {
             osName = "iOS";
+        }
+        if (clentOs == 1) {
+            osName = "Amdroid";
         }
         if (phoneYear < currentYear) {
             yearVersion = "Вам нужно установить lite-версию";
         }
         String clientOs = yearVersion + " для " + osName;
         return clientOs;
-    }
-    // Task 2.1 Сделал 2 числовых значения на вход
-    public static String getClientOS2(int clOs, int phYr) {
-        String osName = "Amdroid";
-        String yearVersion = "Вам нужно установить обычную версию";
-        int currentYear = LocalDate.now().getYear();
-        if (clOs == 0) {
-            osName = "iOS";
-        }
-        if (clOs == 1) {
-            osName = "Amdroid";
-        }
-        if (phYr < currentYear) {
-            yearVersion = "Вам нужно установить lite-версию";
-        }
-        String clientOs2 = yearVersion + " для " + osName;
-        return clientOs2;
     }
 
     // Task 3
@@ -111,20 +96,6 @@ public class Main {
         }
     }
 
-//    public static void checkDouble(String par) {
-//        boolean checking = false;
-//        for (int i = 0; i < par.length() - 1; i++) {
-//            checking = par.charAt(i) == par.charAt(i + 1);
-//            if (checking) {
-//                System.out.println("Дубль - " + par.charAt(i));
-//                break;
-//            }
-//        }
-//        if (!checking) {
-//            System.out.println("Дублей нет");
-//        }
-//    }
-
     // Task 5
     public static int[] reverseMass(int[] mass1) {
         int Temp;
@@ -134,7 +105,23 @@ public class Main {
             mass1[i] = Temp;
         }
         return mass1;
-
     }
-
+    //Task 6
+    public static int[] generateRandomArray() {
+        java.util.Random random = new java.util.Random();
+        int[] arr = new int[30];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100_000) + 100_000;
+        }
+        return arr;
+    }
+    public static void countAndAvg (int [] arr){
+        float sum = 0;
+        float avg;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        avg = sum / arr.length;
+        System.out.println("Сумма элементов = " + sum + " среднее значение = " + avg);
+    }
 }
